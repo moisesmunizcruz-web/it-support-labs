@@ -41,7 +41,12 @@ La VM está operativa, el acceso SSH funciona después de reiniciar y Ubuntu pue
 
 ## Evidencia
 
-Conservé capturas de las comprobaciones de Windows y Ubuntu. También grabé parte de la sesión de terminal en `~/LAB-00-session.log`, fuera del repositorio. Revisaré y eliminaré datos que no deban publicarse antes de incorporar evidencia a `evidence/`.
+## Evidencia
+
+- [Estado de la VM y del adaptador en Windows](../evidence/LAB-00-windows-hyper-v.png).
+- [Comprobaciones de red desde Ubuntu](../evidence/LAB-00-ubuntu-network.png).
+
+La grabación completa de terminal permanece en `~/LAB-00-session.log`, fuera del repositorio, para revisarla antes de publicar cualquier extracto.
 
 ## Aprendizaje
 
