@@ -1,7 +1,7 @@
 # Bitácora consolidada del laboratorio de soporte TI
 
-**Periodo registrado:** 16–17 de septiembre de 2026  
-**Entorno:** anfitrión Windows 11 Pro con Hyper-V; VM `Ubuntu` (antes `Ubuntu-Support-Lab`) y VM `Server` (antes `WS2022-DC01`).  
+**Periodo registrado:** 16–17 de septiembre de 2026<br>
+**Entorno:** anfitrión Windows 11 Pro con Hyper-V; VM `Ubuntu` (antes `Ubuntu-Support-Lab`) y VM `Server` (antes `WS2022-DC01`).<br>
 **Naturaleza:** práctica personal, autodirigida y simulada. No representa soporte a una empresa, usuarios o sistemas de producción.
 
 ## Cómo leer esta bitácora
@@ -111,7 +111,7 @@ Las dos imágenes se transfirieron desde el anfitrión a Ubuntu mediante `scp`. 
 
 ## LAB-01 · Cuentas locales, grupos y carpeta compartida en Ubuntu
 
-**Caso simulado:** solicitud IT-1 en Jira Service Management.  
+**Caso simulado:** solicitud IT-1 en Jira Service Management.<br>
 **Objetivo.** Crear tres usuarios de práctica, asignar grupos y verificar el acceso colaborativo a `/srv/soporte_l1`. Los comandos de esta sección proceden del registro revisado de la sesión. [Nota publicada de LAB-01](https://github.com/moisesmunizcruz-web/it-support-labs/blob/main/lab-notes/LAB-01-local-users-groups-and-shared-access.md).
 
 ### UBUNTU · Registro, grupos y cuentas
@@ -181,7 +181,7 @@ La ACL predeterminada se aplica a los archivos creados **después** de configura
 
 ## LAB-02 · Servicio web Nginx en Ubuntu
 
-**Caso simulado:** IT-2 en Jira Service Management.  
+**Caso simulado:** IT-2 en Jira Service Management.<br>
 **Objetivo.** Instalar Nginx, servir su página predeterminada y comprobar el acceso HTTP desde Ubuntu y Windows. [Nota publicada de LAB-02](https://github.com/moisesmunizcruz-web/it-support-labs/blob/main/lab-notes/LAB-02-web-service-incident.md).
 
 ### UBUNTU · Instalación y pruebas locales
