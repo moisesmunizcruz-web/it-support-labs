@@ -1,0 +1,124 @@
+# LAB-01 / IT-1 — transcripción legible de script -q
+# Se quitaron códigos de control de terminal y se normalizaron caracteres de pantalla.
+# Las contraseñas introducidas de forma interactiva no aparecen en esta copia.
+
+Script iniciado en 2026-09-16 18:19:04-06:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="116" LINES="107"]
+mmuniz@ubuntu:~/it-support-labs$ sudo addgroup soporte_l1
+[sudo: authenticate] Contraseña:
+mmuniz@ubuntu:~/it-support-labs$ sudo addgroup supervisores_ti
+mmuniz@ubuntu:~/it-support-labs$ sudo adduser agente01
+Nueva contraseña:
+CONTRASEÑA INCORRECTA: La contraseña tiene menos de 8 caracteres
+Vuelva a escribir la nueva contraseña:
+Las contraseñas no coinciden.
+Nueva contraseña:
+CONTRASEÑA INCORRECTA: La contraseña no supera la verificación de diccionario - Es demasiado simple/sistemática.
+Vuelva a escribir la nueva contraseña:
+Las contraseñas no coinciden.
+Nueva contraseña:
+Vuelva a escribir la nueva contraseña:
+passwd: contraseña actualizada correctamente
+Cambiando la información de usuario para agente01
+Introduzca el nuevo valor, o pulse INTRO para usar el valor predeterminado
+        Nombre completo []:
+        Número de habitación []:
+        Teléfono del trabajo []:
+        Teléfono de casa []:
+        Otro []:
+¿Es correcta la información? [S/n] s
+mmuniz@ubuntu:~/it-support-labs$ sudo adduser agente02
+Nueva contraseña:
+Vuelva a escribir la nueva contraseña:
+passwd: contraseña actualizada correctamente
+Cambiando la información de usuario para agente02
+Introduzca el nuevo valor, o pulse INTRO para usar el valor predeterminado
+        Nombre completo []:
+        Número de habitación []:
+        Teléfono del trabajo []:
+        Teléfono de casa []:
+        Otro []:
+¿Es correcta la información? [S/n] s
+mmuniz@ubuntu:~/it-support-labs$ sudo adduser supervisor01
+Nueva contraseña:
+Vuelva a escribir la nueva contraseña:
+passwd: contraseña actualizada correctamente
+Cambiando la información de usuario para supervisor01
+Introduzca el nuevo valor, o pulse INTRO para usar el valor predeterminado
+        Nombre completo []:
+        Número de habitación []:
+        Teléfono del trabajo []:
+        Teléfono de casa []:
+        Otro []:
+¿Es correcta la información? [S/n] s
+mmuniz@ubuntu:~/it-support-labs$ sudo adduser agente01 soporte_l1
+mmuniz@ubuntu:~/it-support-labs$ sudo adduser agente02 soporte_l1
+mmuniz@ubuntu:~/it-support-labs$ sudo adduser supervisor01 soporte_l1
+mmuniz@ubuntu:~/it-support-labs$ sudo adduser supervisor01 supervisores_ti
+mmuniz@ubuntu:~/it-support-labs$ clear
+
+[pantalla limpiada]
+mmuniz@ubuntu:~/it-support-labs$ id agente01
+uid=1003(agente01) gid=1003(agente01) groups=1003(agente01),100(users),1001(soporte_l1)
+mmuniz@ubuntu:~/it-support-labs$ id agente02
+uid=1004(agente02) gid=1004(agente02) groups=1004(agente02),100(users),1001(soporte_l1)
+mmuniz@ubuntu:~/it-support-labs$ id supervisor01
+uid=1005(supervisor01) gid=1005(supervisor01) groups=1005(supervisor01),100(users),1001(soporte_l1),1002(supervisores_ti)
+mmuniz@ubuntu:~/it-support-labs$ sudo mkdir /srv/soporte_l1
+mmuniz@ubuntu:~/it-support-labs$ sudo chown root:soporte_l1 /srv/soporte_l1
+mmuniz@ubuntu:~/it-support-labs$ sudo chmod 2770 /srv/soporte_l1
+mmuniz@ubuntu:~/it-support-labs$ ls -ld /srv/soporte_l1
+drwxrws--- 2 root soporte_l1 4096 Sep 16 18:32 /srv/soporte_l1
+mmuniz@ubuntu:~/it-support-labs$ sudo -u agente01 touch /srv/soporte_l1/prueba-agente01.txt
+mmuniz@ubuntu:~/it-support-labs$ sudo -u agente02 touch /srv/soporte_l1/prueba-agente02.txt
+mmuniz@ubuntu:~/it-support-labs$ sudo -u supervisor01 touch /srv/soporte_l1/prueba-supervisor01.txt
+mmuniz@ubuntu:~/it-support-labs$ touch /srv/soporte_l1/prueba-mmuniz.txt
+touch: estableciendo tiempos de '/srv/soporte_l1/prueba-mmuniz.txt': Permission denied
+mmuniz@ubuntu:~/it-support-labs$ ls -l /srv/soporte_l1
+ls: no se puede abrir el directorio ''/srv/soporte_l1'': Permiso denegado
+mmuniz@ubuntu:~/it-support-labs$ sudo ls -l /srv/soporte_l1
+total 0
+-rw-r--r-- 1 agente01     soporte_l1 0 Sep 16 18:32 prueba-agente01.txt
+-rw-r--r-- 1 agente02     soporte_l1 0 Sep 16 18:32 prueba-agente02.txt
+-rw-r--r-- 1 supervisor01 soporte_l1 0 Sep 16 18:33 prueba-supervisor01.txt
+mmuniz@ubuntu:~/it-support-labs$ su - agente01
+Contraseña:
+agente01@ubuntu:~$ whoami
+agente01
+agente01@ubuntu:~$ exit
+cerrar sesión
+mmuniz@ubuntu:~/it-support-labs$ su - agente02
+Contraseña:
+agente02@ubuntu:~$ whoami
+agente02
+agente02@ubuntu:~$ exit
+cerrar sesión
+mmuniz@ubuntu:~/it-support-labs$ su - supervisor01
+Contraseña:
+supervisor01@ubuntu:~$ whoami
+supervisor01
+supervisor01@ubuntu:~$ exit
+cerrar sesión
+mmuniz@ubuntu:~/it-support-labs$ command -v setfacl
+/usr/bin/setfacl
+mmuniz@ubuntu:~/it-support-labs$ sudo setfacl -d -m u::rwx,g::rwx,o::--- /srv/soporte_l1
+mmuniz@ubuntu:~/it-support-labs$ sudo getfacl -d /srv/soporte_l1
+getfacl: Eliminando «/» inicial en nombres de ruta absolutos
+# file: srv/soporte_l1
+# owner: root
+# group: soporte_l1
+# flags: -s-
+user::rwx
+group::rwx
+other::---
+
+mmuniz@ubuntu:~/it-support-labs$ sudo -u agente01 touch /srv/soporte_l1/compartido.txt
+mmuniz@ubuntu:~/it-support-labs$ sudo ls -l /srv/soporte_l1/compartido.txt
+-rw-rw---- 1 agente01 soporte_l1 0 Sep 16 18:40 /srv/soporte_l1/compartido.txt
+mmuniz@ubuntu:~/it-support-labs$ printf '%s\n' 'Revisión realizada por agente02' | sudo -u agente02 tee -a /srv/soporte_l1/compartido.txt
+Revisión realizada por agente02
+mmuniz@ubuntu:~/it-support-labs$ sudo -u supervisor01 cat /srv/soporte_l1/compartido.txt
+Revisión realizada por agente02
+mmuniz@ubuntu:~/it-support-labs$ exit
+exit
+
+Script terminado en 2026-09-16 18:43:11-06:00 [CÓDIGO_SALIDA_ORDEN="0"]
