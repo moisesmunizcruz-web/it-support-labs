@@ -1,0 +1,87 @@
+LAB-02 — Extracto revisado de LAB-02-session.log
+Fecha: 2026-09-17
+Origen: registro original de 23 665 bytes conservado fuera del repositorio.
+Se omitieron códigos de control de terminal, repeticiones de texto pegado y progreso animado de apt.
+Las líneas de salida omitidas se señalan entre corchetes. No se registró el valor de la contraseña de sudo.
+Las pruebas realizadas en Windows se documentan en las capturas y la nota del laboratorio.
+
+Script iniciado en 2026-09-17 09:01:41-06:00
+
+$ dpkg -s nginx
+dpkg-query: el paquete `nginx' no está instalado y no hay ninguna información disponible.
+Use dpkg --info (= dpkg-deb --info) to examine archive files.
+
+$ systemctl status nginx --no-pager
+Unit nginx.service could not be found.
+
+$ script -a ~/LAB-02-session.log
+Script iniciado, el fichero de anotación de salida es '/home/mmuniz/LAB-02-session.log'.
+
+$ sudo apt update
+[sudo: authenticate] Contraseña:
+[Se omitió el progreso de descarga y lectura de índices.]
+Descargados 1.945 kB en 1s (1.623 kB/s)
+Se pueden actualizar 21 paquetes. Ejecute «apt list --upgradable» para verlos.
+
+$ sudo apt install nginx
+Instalando:
+  nginx
+Instalando dependencias:
+  nginx-common
+Resumen:
+  Actualizando: 0, Instalando 2, Eliminando: 0, no actualizando: 21
+  Tamaño de la descarga: 655 kB
+¿Continuar? [S/n] s
+[Se omitió el progreso de descarga y desempaquetado.]
+Configurando nginx-common (1.28.3-2ubuntu1.11) ...
+Configurando nginx (1.28.3-2ubuntu1.11) ...
+Created symlink '/etc/systemd/system/multi-user.target.wants/nginx.service' → '/usr/lib/systemd/system/nginx.service'.
+[ OK ]
+
+$ sudo systemctl status nginx --no-pager
+● nginx.service - A high performance web server and a reverse proxy server
+     Loaded: loaded (/usr/lib/systemd/system/nginx.service; enabled; preset: enabled)
+     Active: active (running)
+
+$ curl -I http://127.0.0.1
+No se ha encontrado la orden «curl», pero se puede instalar con:
+sudo apt install curl
+
+$ hostname -I
+172.21.53.73
+
+$ sudo apt install curl
+Instalando:
+  curl
+Resumen:
+  Actualizando: 0, Instalando 1, Eliminando: 0, no actualizando: 21
+  Tamaño de la descarga: 272 kB
+[Se omitió el progreso de descarga y desempaquetado.]
+Configurando curl (8.18.0-1ubuntu2.5) ...
+
+$ curl -I http://127.0.0.1/
+HTTP/1.1 200 OK
+Server: nginx/1.28.3 (Ubuntu)
+Content-Type: text/html
+Content-Length: 615
+
+$ curl -s http://127.0.0.1/ | head -n 8
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+
+$ sudo nginx -t
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+
+$ systemctl is-enabled nginx
+enabled
+
+$ exit
+Script finalizado.
+Script terminado en 2026-09-17 09:17:09-06:00 [CÓDIGO_SALIDA_ORDEN="0"]
